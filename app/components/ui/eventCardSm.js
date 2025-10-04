@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import {Calendar, MapPin } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 // Configuration constants
@@ -38,10 +39,11 @@ const EventCard = ({
     className={`relative rounded-2xl overflow-hidden shadow-lg w-full max-w-sm text-white mx-auto cursor-pointer transition-all duration-${TRANSITION_DURATION} ${TRANSITION_EASING} ${className}`}>
       {/* Background Image Section */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src={imageUrl}
           alt={imageAlt}
-          className="w-full h-full object-cover transition-all duration-300 ease-in-out rounded-2xl"
+          fill
+          className="object-cover transition-all duration-300 ease-in-out rounded-2xl"
         />
         {/* Gradient overlay for text readability */}
         <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-black via-black/70 to-transparent"></div>

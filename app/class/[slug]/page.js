@@ -12,27 +12,7 @@ const Eventpage = () => {
     const params = useParams();
     const slug = params.slug;
     
-    console.log('Slug received:', slug); // Debug log
-    
-    // Find the event data based on slug
-    const eventData = cardValues.find(event => event.slug === slug);
-    
-    console.log('Event data found:', eventData); // Debug log
-    
-    // If event not found, show 404
-    if (!eventData) {
-        console.log('Event not found for slug:', slug); // Debug log
-        return (
-            <div className="h-screen flex items-center justify-center">
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold mb-4">Event Not Found</h1>
-                    <p className="text-gray-600">The event you're looking for doesn't exist.</p>
-                    <p className="text-sm text-gray-400 mt-2">Slug: {slug}</p>
-                </div>
-            </div>
-        );
-    }
-    
+    // Move all hooks to the top before any conditional returns
     const [panelState, setPanelState] = useState('peeking');
     const [isAnimating, setIsAnimating] = useState(false);
     // New state to create the "sticky top" effect before closing the panel
@@ -149,6 +129,26 @@ const Eventpage = () => {
         };
     }, [panelState, handleAnimation, isAnimating, isTopSticky]);
 
+    console.log('Slug received:', slug); // Debug log
+    
+    // Find the event data based on slug
+    const eventData = cardValues.find(event => event.slug === slug);
+    
+    console.log('Event data found:', eventData); // Debug log
+    
+    // If event not found, show 404
+    if (!eventData) {
+        console.log('Event not found for slug:', slug); // Debug log
+        return (
+            <div className="h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <h1 className="text-2xl font-bold mb-4">Event Not Found</h1>
+                    <p className="text-gray-600">The event you&apos;re looking for doesn&apos;t exist.</p>
+                    <p className="text-sm text-gray-400 mt-2">Slug: {slug}</p>
+                </div>
+            </div>
+        );
+    }
 
     const handleDragEnd = (event, info) => {
         if (info.velocity.y > 20 || (info.velocity.y >= 0 && info.point.y > 450)) {

@@ -1,6 +1,7 @@
 // components/ui/Button.jsx
 'use client'
 import React from 'react';
+import Image from 'next/image';
 
 const Button = ({
   children,
@@ -36,9 +37,11 @@ const Button = ({
   const renderImage = () => {
     if (!image) return null;
     return (
-      <img 
+      <Image 
         src={image} 
         alt="" 
+        width={20}
+        height={20}
         className="w-5 h-5 object-contain"
       />
     );
