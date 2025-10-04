@@ -14,11 +14,6 @@ const eventCategories = [
     title: "REGULARS",
     icon: "/images/regular.png",
   },
-  {
-    id: 3,
-    title: "KIDS",
-    icon: "/images/kids.png",
-  },
 
 ];
 
@@ -46,7 +41,7 @@ const EventExplorer = ({ className = "", onFilterSelect, selectedFilter }) => {
                   : 'border-gray-700/50 hover:border-gray-600/70'
               }`}>
                 {/* Title */}
-                <h3 className="text-white font-bold text-xs sm:text-sm md:text-base tracking-wide text-center">
+                <h3 className="text-white font-bold text-xs sm:text-sm md:text-base tracking-widest text-center">
                   {category.title}
                 </h3>
                 {/* Icon */}
