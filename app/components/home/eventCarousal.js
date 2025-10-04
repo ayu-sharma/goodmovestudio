@@ -90,7 +90,18 @@ const EventCarousal = () => {
                   transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   onClick={() => setCurrentIndex(index)}
                 >
-                  <EventCard {...cardItem} />
+                  <EventCard 
+                    slug={cardItem.slug}
+                    imageUrl={cardItem.imageUrl}
+                    imageAlt={cardItem.imageAlt}
+                    month={cardItem.month}
+                    day={cardItem.day}
+                    tags={cardItem.tags}
+                    title={cardItem.title}
+                    date={cardItem.date}
+                    venue={cardItem.venue}
+                    price={cardItem.price}
+                  />
                 </motion.div>
               ))}
             </motion.div>

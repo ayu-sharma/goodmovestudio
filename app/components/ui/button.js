@@ -19,15 +19,6 @@ const Button = ({
   // Base styles - minimal
   const baseStyles = 'inline-flex items-center justify-center font-medium disabled:opacity-50 cursor-pointer';
   
-  // Variant styles - no hover or focus states
-  const variants = {
-    primary: 'bg-blue-600',
-    secondary: 'bg-gray-600',
-    outline: 'border-2 border-blue-600',
-    ghost: 'text-gray-700',
-    link: ''
-  };
-  
   // Size styles
   const sizes = {
     small: 'px-2 py-1 text-sm',
@@ -39,7 +30,7 @@ const Button = ({
   const gapStyles = 'gap-2';
   
   // Combine all styles
-  const buttonClasses = `${baseStyles} ${variants[variant]} ${sizes[size]} ${gapStyles} ${className}`;
+  const buttonClasses = `${baseStyles} ${sizes[size]} ${gapStyles} ${className}`;
   
   // Render image element
   const renderImage = () => {
