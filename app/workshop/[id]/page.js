@@ -10,7 +10,7 @@ import cardValues from '../../constant/cardValues';
 
 const Eventpage = () => {
     const params = useParams();
-    const slug = params.slug;
+    const id = params.id;
     
     // Move all hooks to the top before any conditional returns
     const [panelState, setPanelState] = useState('peeking');
@@ -129,22 +129,21 @@ const Eventpage = () => {
         };
     }, [panelState, handleAnimation, isAnimating, isTopSticky]);
 
-    console.log('Slug received:', slug); // Debug log
     
-    // Find the event data based on slug
-    const eventData = cardValues.find(event => event.slug === slug);
+    // Find the event data based on id (convert string to number)
+    const eventData = cardValues.find(event => event.id === parseInt(id));
     
     console.log('Event data found:', eventData); // Debug log
     
     // If event not found, show 404
     if (!eventData) {
-        console.log('Event not found for slug:', slug); // Debug log
+        console.log('Event not found for id:', id); // Debug log
         return (
             <div className="h-screen flex items-center justify-center">
                 <div className="text-center">
                     <h1 className="text-2xl font-bold mb-4">Event Not Found</h1>
                     <p className="text-gray-600">The event you&apos;re looking for doesn&apos;t exist.</p>
-                    <p className="text-sm text-gray-400 mt-2">Slug: {slug}</p>
+                    <p className="text-sm text-gray-400 mt-2">ID: {id}</p>
                 </div>
             </div>
         );

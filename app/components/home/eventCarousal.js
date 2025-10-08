@@ -91,6 +91,7 @@ const EventCarousal = () => {
                   onClick={() => setCurrentIndex(index)}
                 >
                   <EventCard 
+                    id={cardItem.id}
                     slug={cardItem.slug}
                     imageUrl={cardItem.imageUrl}
                     imageAlt={cardItem.imageAlt}
@@ -98,6 +99,7 @@ const EventCarousal = () => {
                     day={cardItem.day}
                     tags={cardItem.tags}
                     title={cardItem.title}
+                    type={cardItem.type}
                     date={cardItem.date}
                     venue={cardItem.venue}
                     price={cardItem.price}

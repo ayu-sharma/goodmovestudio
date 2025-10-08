@@ -1,5 +1,6 @@
 import React from 'react'
 import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react'
+import Image from 'next/image'
 
 // Footer data arrays
 const footerLinks = [
@@ -17,14 +18,12 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-[#181718] text-white py-8 mt-auto">
-      <div className="max-w-6xl mx-auto px-4">
+    <footer className="text-white py-8 mt-auto">
+      <div className="w-full mx-auto px-4">
         {/* Main Footer Content */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           {/* Logo */}
-          <div className="mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold">Good Move Studio</h2>
-          </div>
+          <Image src="/images/logo.png" alt="Good Move Studio" width={180} height={50} />
 
           {/* Footer Links */}
           <div className="flex flex-wrap justify-center md:justify-end gap-6 md:gap-8 text-sm">

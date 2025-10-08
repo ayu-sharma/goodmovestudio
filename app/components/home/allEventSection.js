@@ -49,6 +49,7 @@ const AllEventSection = ({ className, selectedFilter }) => {
           {getFilteredEvents().map((event, index) => (
             <EventCard
               key={index}
+              id={event.id}
               slug={event.slug}
               imageUrl={event.imageUrl}
               imageAlt={event.imageAlt}
@@ -56,6 +57,7 @@ const AllEventSection = ({ className, selectedFilter }) => {
               day={event.day}
               tags={event.tags}
               title={event.title}
+              type={event.type}
               date={event.date}
               venue={event.venue}
               price={event.price}

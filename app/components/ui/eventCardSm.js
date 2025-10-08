@@ -14,6 +14,7 @@ const TRANSITION_EASING = 'ease-in-out';
  * Features smooth transitions for responsive text sizing
  */
 const EventCard = ({ 
+  id,
   slug,
   imageUrl,
   imageAlt = '',
@@ -24,13 +25,23 @@ const EventCard = ({
   date,
   venue,
   price,
+  type,
   className = '',
 }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    if (slug) {
-      router.push(`/workshop/${slug}`);
+    console.log('EventCard clicked - ID:', id, 'Type:', type); // Debug log
+    if (id) {
+      if (type === 'Workshop') {
+        router.push(`/workshop/${id}`);
+        console.log('Navigating to workshop:', id);
+      } else {
+        router.push(`/class/${id}`);
+        console.log('Navigating to class:', id);
+      }
+    } else {
+      console.log('No ID provided to EventCard');
     }
   };
   return (

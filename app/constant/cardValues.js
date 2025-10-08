@@ -1,6 +1,7 @@
 const cardValues = [
   {
     id: 1,
+    type: "Workshop",
     title: "Bhangra Dance Workshop",
     slug: "bhangra-dance-workshop",
     subtitle: "Live Performance by DJ Walia",
@@ -37,6 +38,7 @@ const cardValues = [
   },
   {
     id: 2,
+    type: "Regular",
     title: "Hip Hop Regular Class",
     slug: "hip-hop-regular-class",
     subtitle: "Weekly Hip Hop Sessions",
@@ -73,6 +75,7 @@ const cardValues = [
   },
   {
     id: 3,
+    type: "Kids",
     title: "Kids Bollywood Dance",
     slug: "kids-bollywood-dance",
     subtitle: "Fun Dance for Kids",

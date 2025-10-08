@@ -6,6 +6,7 @@ import EventLocation from './eventLocation';
 import EventInfo from './eventInfo';
 import StudioGuidelines from './studioGuidelines';
 import EventFaq from './eventFaq';
+import ClassSchedule from './classSchedule';
 // Force refresh
 
 
@@ -46,8 +47,6 @@ const EventPanel = ({
             tag={eventData.tags}
             date={eventData.date}
             time={eventData.time}
-            buttonText={eventData.buttonText}
-            onButtonClick={() => window.open(eventData.storeLink, '_blank')}
           />
         </div>
         <div className="max-w-4xl mx-auto px-4 pb-8">
@@ -58,6 +57,10 @@ const EventPanel = ({
         <div className="max-w-4xl mx-auto px-4 pb-8">
         <EventInfo
         eventInfo={eventData.description}
+        />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 pb-8">
+        <ClassSchedule
         />
         </div>
         <div className="max-w-4xl mx-auto px-4 pb-8">

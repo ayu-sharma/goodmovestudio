@@ -1,17 +1,18 @@
-// components/Navbar.js
-'use client'
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import OutsideClickHandler from '../../hooks/outsideClickHandler';
-import Button from './button';
-
-// Navbar Component
+import React from 'react';
+import Image from 'next/image';
 const Navbar = () => {
   return (
-    <div>
-      <h1>Navbar</h1>
-    </div>
-  )
+    <nav className="py-2 px-6">
+      <Image
+        src="/images/logo.png"
+        alt="Company Logo"
+        className='cursor-pointer'
+        width={180}
+        height={50}
+      />
+    </nav>
+  );
 };
 
 export default Navbar;
+

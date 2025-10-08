@@ -22,12 +22,14 @@ export default function Home() {
 
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
+      <div className="">
       <HeroShowcaseMd className=""/>
       <HeroShowcase className="block md:hidden"/>
       <EventExplorer onFilterSelect={handleFilterSelect} selectedFilter={selectedFilter}/>
       <AllEventSection selectedFilter={selectedFilter}/>
-      {/* <Footer/> */}
+      </div>
+      <Footer/>
     </div>
   );
 }
