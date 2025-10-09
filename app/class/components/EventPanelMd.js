@@ -43,7 +43,7 @@ const EventPanelMd = ({ eventData }) => {
                   <EventFaq eventFaq={eventData.faqs} />
                 </div>
                 <div className="w-full fixed bottom-0 left-0  z-50 lg:hidden md:block">
-                  <PriceCard price={eventData.price} />
+                  <PriceCard price={eventData.price} eventData={eventData} />
                 </div>
               </div>
             </div>
@@ -83,7 +83,7 @@ const EventPanelMd = ({ eventData }) => {
             <EventFaq eventFaq={eventData.faqs} />
           </div>
           <div className="w-full fixed bottom-0 left-0  z-50 lg:hidden md:block">
-            <PriceCard price={eventData.price} />
+            <PriceCard price={eventData.price} eventData={eventData} />
           </div>
         </div>
       </div>
