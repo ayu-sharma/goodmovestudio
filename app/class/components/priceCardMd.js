@@ -17,6 +17,7 @@ const PriceCardMd = ({
       name: "Quarterly Premium",
       price: "₹799",
       period: "/quarter",
+      discount: "-₹1000",
     },
   ],
 }) => {
@@ -60,13 +61,13 @@ const PriceCardMd = ({
 
       <div className="border-t border-gray-200 my-5"></div>
 
-      {/* Plan Selection Section - Vertical Layout */}
-      <div className="space-y-3 mb-6">
+      {/* Plan Selection Section - Horizontal Layout */}
+      <div className="flex gap-4 mb-6 max-[1219px]:flex-col max-[1219px]:gap-3 max-lg:flex-row">
         {plans.map((plan) => (
           <div
             key={plan.id}
             onClick={() => setSelectedPlanId(plan.id)}
-            className={`cursor-pointer p-4 sm:p-5 rounded-xl border-2 transition-all duration-300
+            className={`flex-1 cursor-pointer p-4 sm:p-5 rounded-xl border-2 transition-all duration-300
                 ${
                   selectedPlanId === plan.id
                     ? "border-[#00EA9C] bg-[#00EA9C]/10"
@@ -76,16 +77,18 @@ const PriceCardMd = ({
           >
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="font-semibold text-gray-800 text-sm sm:text-base">
-                    {plan.name}
-                  </h3>
-                  {plan.discount && (
-                    <span className="text-xs font-semibold text-[#008a5c] bg-[#00EA9C]/20 px-2 py-0.5 rounded-full">
-                      {plan.discount}
-                    </span>
-                  )}
-                </div>
+                 <div className="flex items-center gap-2 mb-2">
+                   <h3 className="font-semibold text-gray-800 text-sm sm:text-base">
+                     {plan.name.split(' ').map((word, index) => (
+                       <div key={index}>{word}</div>
+                     ))}
+                   </h3>
+                   {plan.discount && (
+                     <span className="text-[9px] font-medium text-[#008a5c] bg-[#00EA9C]/20 px-2 py-0.5 rounded-full">
+                       {plan.discount}
+                     </span>
+                   )}
+                 </div>
                 <div className="flex items-baseline">
                   <span className="text-2xl sm:text-3xl font-bold text-gray-900">
                     {plan.price}
@@ -97,13 +100,13 @@ const PriceCardMd = ({
               </div>
 
               {/* Selection Indicator */}
-              <div className="flex-shrink-0 ml-3">
+              {/* <div className="flex-shrink-0 ml-3">
                 {selectedPlanId === plan.id ? (
                   <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-[#00EA9C]" />
                 ) : (
                   <div className="h-5 w-5 sm:h-6 sm:w-6 rounded-full border-2 border-gray-300"></div>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
         ))}

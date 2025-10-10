@@ -1,17 +1,9 @@
 import React from 'react';
 import { CalendarDays, Clock } from 'lucide-react';
 
-// --- ICONS ---
-// To use actual Lucide icons, you would install lucide-react:
-// npm install lucide-react
-// Then import them like this:
-// import { CalendarDays, Clock } from 'lucide-react';
 
-// --- Class Schedule Component ---
-export default function ClassSchedule() {
+const ClassSchedule = () => {
   return (
-    // The main container now has a dark gray background suitable for a black page.
-    // Text colors are already set for a dark theme.
     <div className="w-full py-8 space-y-8 rounded-2xl text-white ">
         <h1 className='lg:text-xl text-lg pb-2 text-white/70 font-medium'>
         Class Schedule
@@ -48,4 +40,4 @@ export default function ClassSchedule() {
   );
 }
 
-
+export default ClassSchedule;
