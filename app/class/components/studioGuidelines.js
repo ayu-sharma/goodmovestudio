@@ -22,7 +22,7 @@ const StudioGuidelines = () => {
 
         {/* What You'll Need Section */}
         <div>
-          <h2 className="text-base lg:text-xl md:text-lg pb-2 text-white/70 font-medium">What You'll Need</h2>
+          <h2 className="text-base lg:text-xl md:text-lg pb-2 text-white/70 font-medium">What You&apos;ll Need</h2>
           <ul className="list-disc">
             <li className="text-white font-medium">
               Comfortable ethnic clothes
