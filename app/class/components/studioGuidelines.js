@@ -1,41 +1,19 @@
 import React from 'react';
 
-const StudioGuidelines = () => {
+const StudioGuidelines = ({ studioGuidelines }) => {
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Studio Guidelines Section */}
-        <div>
-          <h2 className="text-base lg:text-xl md:text-lg pb-2 text-white/70 font-medium">Studio Guidelines</h2>
-          <ul className="list-disc">
-            <li className="text-white font-medium">
-              Outdoor shoes are not allowed. Carry a clean pair of shoes.
-            </li>
-            <li className="text-white font-medium">
-              Arrive 10 minutes before the scheduled start time.
-            </li>
-            <li className="text-white font-medium">
-              Carry a water bottle with you.
-            </li>
-          </ul>
-        </div>
-
-        {/* What You'll Need Section */}
-        <div>
-          <h2 className="text-base lg:text-xl md:text-lg pb-2 text-white/70 font-medium">What You&apos;ll Need</h2>
-          <ul className="list-disc">
-            <li className="text-white font-medium">
-              Comfortable ethnic clothes
-            </li>
-            <li className="text-white font-medium">
-              Water bottle
-            </li>
-            <li className="text-white font-medium">
-              Clean pair of shoes
-            </li>
-          </ul>
-        </div>
+    <div className="flex flex-col">
+    <p className='text-sm pb-2 text-white/70 font-medium tracking-widest'>STUDIO GUIDELINES</p>
+    <div className='flex flex-col gap-y-4'>
+    {studioGuidelines && studioGuidelines.map((guideline, index) => (
+      <div key={index} className='flex items-center gap-x-4'>
+        {/* <div className='w-5 h-5 text-white flex-shrink-0'>
+          {guideline.icon}
+        </div> */}
+        <p className='text-lg text-white font-normal'>{guideline}</p>
       </div>
+    ))}
+    </div>
     </div>
   );
 };

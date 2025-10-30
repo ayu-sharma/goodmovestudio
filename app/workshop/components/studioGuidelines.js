@@ -1,24 +1,21 @@
 import React from 'react';
 
 const StudioGuidelines = ({ studioGuidelines }) => {
-  // Safety check to prevent errors if data is undefined
-  if (!studioGuidelines || !Array.isArray(studioGuidelines)) {
     return (
       <div>
-        <p className='lg:text-base tracking-widest pb-2 text-white/70 font-medium'>Studio Guidelines</p>
-        <p className='text-base text-white font-medium'>No guidelines available.</p>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      <p className='text-base lg:text-xl md:text-lg pb-2 text-white/70 font-medium'>Studio Guidelines</p>
-      <ul className='list-disc px-3'>
-        {studioGuidelines.map((guideline, index) => (
-          <li key={index} className='text-base text-white font-medium'>{guideline}</li>
+      <div className="flex flex-col">
+        <p className='text-sm pb-2 text-white/70 font-medium tracking-widest'>STUDIO GUIDELINES</p>
+        <div className='flex flex-col gap-y-4'>
+        {studioGuidelines && studioGuidelines.map((guideline, index) => (
+          <div key={index} className='flex items-center gap-x-4'>
+            {/* <div className='w-5 h-5 text-white flex-shrink-0'>
+              {guideline.icon}
+            </div> */}
+            <p className='text-lg text-white font-normal'>{guideline}</p>
+          </div>
         ))}
-      </ul>
+        </div>
+        </div>
     </div>
   );
 };

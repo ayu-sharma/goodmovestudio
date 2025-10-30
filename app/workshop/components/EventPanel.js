@@ -6,6 +6,8 @@ import EventLocation from './eventLocation';
 import EventInfo from './eventInfo';
 import StudioGuidelines from './studioGuidelines';
 import EventFaq from './eventFaq';
+import EventSchedule from './eventSchedule';
+import { useData } from '../../context/DataContext';
 // Force refresh
 
 
@@ -15,13 +17,13 @@ const EventPanel = ({
   innerScrollRef, 
   isAnimating, 
   onDragEnd,
-  eventData = {}
+  eventData
 }) => {
   const panelVariants = {
     peeking: { y: 'calc(100vh - 350px)' },
     docked: { y: '0px' },
   };
-
+  const { formatDate } = useData();
   return (
     <motion.div 
       className="fixed left-0 right-0 z-20 h-screen bg-[#121212] rounded-t-2xl text-white"
@@ -43,16 +45,25 @@ const EventPanel = ({
         <div className="max-w-4xl mx-auto px-4 pb-8">
           <EventHeader 
             title={eventData.title}
-            tag={eventData.tags}
-            date={eventData.date}
-            time={eventData.time}
+            tag={eventData.categories}
+            date={formatDate(eventData.start_time)}
+            time={formatDate(eventData.start_time)}
+            duration={eventData.duration_min}
             buttonText={eventData.buttonText}
             onButtonClick={() => window.open(eventData.storeLink, '_blank')}
           />
         </div>
         <div className="max-w-4xl mx-auto px-4 pb-8">
         <EventLocation
-        eventVenue={eventData.venue}
+        eventVenue={eventData.location_name}
+        eventSubAddress={eventData.location_description}
+        url={eventData.location_url}
+          />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 pb-8">
+        <EventSchedule
+        date={eventData.start_time}
+        formatDate={formatDate}
         />
         </div>
         <div className="max-w-4xl mx-auto px-4 pb-8">
@@ -62,7 +73,7 @@ const EventPanel = ({
         </div>
         <div className="max-w-4xl mx-auto px-4 pb-8">
         <StudioGuidelines
-        studioGuidelines={eventData.guidelines}
+        studioGuidelines={eventData.studio_guidelines}
         />
         </div>
 

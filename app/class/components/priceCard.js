@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../components/ui/button";
-import PriceCardMd from "./priceCardMd";
+import PriceCardMd from "../../components/ui/priceCardMd";
 import { X } from "lucide-react";
 
 const PriceCard = ({ price, className, eventData }) => {
@@ -64,6 +64,17 @@ const PriceCard = ({ price, className, eventData }) => {
                   venue={eventData?.venue || ""}
                   title={eventData?.title || ""}
                   className="max-w-full rounded-t-3xl rounded-b-none"
+                  classType="class"
+                  plans={[
+                    { id: "monthly", name: "Monthly", price: "₹299", period: "/month" },
+                    {
+                      id: "quarterly",
+                      name: "Quarterly",
+                      price: "₹799",
+                      period: "/quarter",
+                      discount: "-₹1000",
+                    }
+                  ]}
                 />
               </div>
             </div>
@@ -76,7 +87,7 @@ const PriceCard = ({ price, className, eventData }) => {
                 {/* Close button */}
                 <Button
                   onClick={closeModal}
-                  className="absolute top-4 right-4 z-10 bg-gray-200 hover:bg-gray-300 rounded-full p-2 transition-colors"
+                  className="absolute top-4 right-4 z-10 bg-gray-200 hover:bg-gray-300 rounded-full px-2 py-4 transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </Button>
@@ -88,6 +99,17 @@ const PriceCard = ({ price, className, eventData }) => {
                   date={eventData?.date || ""}
                   venue={eventData?.venue || ""}
                   title={eventData?.title || ""}
+                  classType="class"
+                  plans={[
+                    { id: "monthly", name: "Monthly Basic", price: "₹299", period: "/month" },
+                    {
+                      id: "quarterly",
+                      name: "Quarterly Premium",
+                      price: "₹799",
+                      period: "/quarter",
+                      discount: "-₹1000",
+                    }
+                  ]}
                 />
               </div>
             </div>

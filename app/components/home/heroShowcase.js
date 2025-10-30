@@ -10,7 +10,7 @@ const HeroShowcase = ({ className }) => {
           <div className="flex-grow h-px bg-gradient-to-r from-transparent to-[#6e6d72]"></div>
 
           {/* The Text */}
-          <h2 className="px-4 text-sm font-semibold tracking-widest text-[#e5e4e9] uppercase">
+          <h2 className="px-4 text-base font-semibold tracking-widest text-[#e5e4e9] uppercase">
             Featured Events
           </h2>
 

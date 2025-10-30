@@ -6,12 +6,34 @@ import BackgroundImage from "../components/BackgroundImage";
 import EventPanel from '../components/EventPanel';
 import PriceCard from '../components/priceCard';
 import EventPanelMd from '../components/EventPanelMd';
-import cardValues from '../../constant/cardValues';
+import { useData } from '../../context/DataContext';
 
 const Eventpage = () => {
     const params = useParams();
-    const id = params.id;
-    
+    const { getWorkshopById, loading, error } = useData();
+    const eventData = getWorkshopById(parseInt(params.id));
+    if (loading) {
+        return (
+            <div className="h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+                    <p className="mt-4 text-gray-600">Loading event...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="h-screen flex items-center justify-center">
+                <div className="text-center">
+                    <h1 className="text-2xl font-bold mb-4">Error Loading Event</h1>
+                    <p className="text-gray-600">{error}</p>
+                </div>
+            </div>
+        );
+    }
+
     // Move all hooks to the top before any conditional returns
     const [panelState, setPanelState] = useState('peeking');
     const [isAnimating, setIsAnimating] = useState(false);
@@ -128,22 +150,14 @@ const Eventpage = () => {
             window.removeEventListener('touchmove', handleTouchMove);
         };
     }, [panelState, handleAnimation, isAnimating, isTopSticky]);
-
-    
-    // Find the event data based on id (convert string to number)
-    const eventData = cardValues.find(event => event.id === parseInt(id));
-    
-    console.log('Event data found:', eventData); // Debug log
-    
     // If event not found, show 404
     if (!eventData) {
-        console.log('Event not found for id:', id); // Debug log
         return (
             <div className="h-screen flex items-center justify-center">
                 <div className="text-center">
                     <h1 className="text-2xl font-bold mb-4">Event Not Found</h1>
                     <p className="text-gray-600">The event you&apos;re looking for doesn&apos;t exist.</p>
-                    <p className="text-sm text-gray-400 mt-2">ID: {id}</p>
+                    <p className="text-sm text-gray-400 mt-2">ID: {params.id}</p>
                 </div>
             </div>
         );
@@ -160,7 +174,7 @@ const Eventpage = () => {
     return (
         <>
         <div className="h-screen overflow-hidden md:hidden">
-            <BackgroundImage imageUrl={eventData.imageUrl} />
+            <BackgroundImage imageUrl={eventData?.image} />
             <EventPanel 
                 panelState={panelState}
                 controls={controls}
@@ -171,7 +185,8 @@ const Eventpage = () => {
             />
             <div className="fixed bottom-0 left-0 w-full z-50">
             <PriceCard
-                price={eventData.price}
+                regularPrice={eventData?.tickets?.[1]}
+                earlyBirdPrice={eventData?.tickets?.[0]}
             />
             </div>
         </div>

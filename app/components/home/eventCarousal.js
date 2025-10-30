@@ -2,7 +2,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import cardValues from "../../constant/cardValues";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import EventCard from "../ui/eventCardSm";
 const EventCarousal = () => {

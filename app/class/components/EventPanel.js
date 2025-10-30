@@ -7,6 +7,7 @@ import EventInfo from './eventInfo';
 import StudioGuidelines from './studioGuidelines';
 import EventFaq from './eventFaq';
 import ClassSchedule from './classSchedule';
+import { useData } from '../../context/DataContext';
 // Force refresh
 
 
@@ -16,13 +17,15 @@ const EventPanel = ({
   innerScrollRef, 
   isAnimating, 
   onDragEnd,
-  eventData = {}
+  eventData = {},
+  formatDays,
+  formatTime
 }) => {
   const panelVariants = {
     peeking: { y: 'calc(100vh - 350px)' },
     docked: { y: '0px' },
   };
-
+  console.log("this", eventData)
   return (
     <motion.div 
       className="fixed left-0 right-0 z-20 h-screen bg-[#121212] rounded-t-2xl text-white"
@@ -41,37 +44,45 @@ const EventPanel = ({
           overscrollBehavior: 'contain'
         }}
       >
+        {console.log("eventData:", eventData?.schedule)}
+        {console.log("full time schedule:", eventData?.schedule?.batches[0]?.days)}
+        {console.log("full time schedule:", eventData?.schedule?.batches[0]?.time_slots[0])}
         <div className="max-w-4xl mx-auto px-4 pb-8">
           <EventHeader 
-            title={eventData.title}
-            tag={eventData.tags}
-            date={eventData.date}
-            time={eventData.time}
+            title={eventData?.title}
+            tag={eventData?.categories}
+            day={formatDays(eventData?.schedule?.batches[0]?.days)}
+            time={formatTime(eventData?.schedule?.batches[0]?.time_slots[0])}
+            frequency={eventData?.schedule?.frequency}
           />
+        </div>
+        <div className="max-w-4xl mx-auto px-4 pb-8"> 
+        <EventInfo
+        eventInfo={eventData?.description}
+        />
         </div>
         <div className="max-w-4xl mx-auto px-4 pb-8">
         <EventLocation
-        eventVenue={eventData.venue}
+        eventVenue={eventData?.location_name}
+        eventSubAddress={eventData?.location_description}
+        url={eventData?.location_url}
         />
         </div>
         <div className="max-w-4xl mx-auto px-4 pb-8">
-        <EventInfo
-        eventInfo={eventData.description}
-        />
-        </div>
-        <div className="max-w-4xl mx-auto px-4 pb-8">
-        <ClassSchedule
+        <ClassSchedule 
+        day={formatDays(eventData?.schedule?.batches[0]?.days)}
+        time={formatTime(eventData?.schedule?.batches[0]?.time_slots[0])}
         />
         </div>
         <div className="max-w-4xl mx-auto px-4 pb-8">
         <StudioGuidelines
-        studioGuidelines={eventData.guidelines}
+        studioGuidelines={eventData?.studio_guidelines}
         />
         </div>
 
         <div className="max-w-4xl mx-auto px-4 pb-8">
         <EventFaq
-        eventFaq={eventData.faqs}
+        eventFaq={eventData?.faqs}
         />
         </div>
         <div className="h-[10vh]"></div>

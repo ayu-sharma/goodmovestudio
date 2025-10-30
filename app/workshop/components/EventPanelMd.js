@@ -1,47 +1,94 @@
-import React from 'react'
-import Image from 'next/image'
-import PriceCardMd from './priceCardMd'
-import EventInfo from './eventInfo'
-import EventLocation from './eventLocation'
-import StudioGuidelines from './studioGuidelines'
-import EventFaq from './eventFaq'
-import PriceCard from './priceCard'
+import React from "react";
+import Image from "next/image";
+import PriceCardMd from "../../components/ui/priceCardMd";
+import EventInfo from "./eventInfo";
+import EventLocation from "./eventLocation";
+import StudioGuidelines from "./studioGuidelines";
+import EventFaq from "./eventFaq";
+import PriceCard from "./priceCard";
+import Navbar from "@/app/components/ui/navbar";
+import Footer from "@/app/components/ui/footer";
+import EventSchedule from "./eventSchedule";
+import { useData } from "../../context/DataContext";
 const EventPanelMd = ({ eventData }) => {
+const { formatDate } = useData();
+console.log("eventData:", eventData);
   return (
     <>
-    <div className='max-w-7xl mx-auto w-full py-10 px-10 flex flex-col gap-y-7 '>
-      <div className='flex gap-x-10 w-full'>
-        <div className='flex justify-between gap-y-10 w-full'>
-          <div className='w-[60%]'>
-          <Image src="/images/bhangra.png" className='rounded-2xl shadow-2xl max-w-3xl w-full' alt={eventData.title} width={550} height={200} />
+      <Navbar />
+      <div className="max-w-7xl mx-auto w-full py-10 px-10 flex flex-col gap-y-7 ">
+        <div className="flex gap-x-10 w-full">
+          <div className="flex justify-between w-full">
+            <div className="lg:w-[60%] w-full flex flex-col gap-y-10">
+              <Image
+                src={eventData.image}
+                className="rounded-2xl shadow-2xl max-w-3xl w-full"
+                alt={eventData.title}
+                width={550}
+                height={200}
+              />
+              <div className="hidden flex-col space-y-10 lg:flex w-full">
+                <div className="w-full">
+                  <EventInfo eventInfo={eventData.description} />
+                </div>
+                <div className="flex flex-col gap-y-6">
+                  <div className="w-full">
+                    <EventLocation eventVenue={eventData.location_name} eventSubAddress={eventData.location_description} url={eventData.location_url} />
+                  </div>
+                  <div className="w-full">
+                    <EventSchedule date={eventData.start_time} formatDate={formatDate} />
+                  </div>
+                </div>
+                <div className="w-full">
+                  <StudioGuidelines studioGuidelines={eventData.studio_guidelines} />
+                </div>
+                <div className="w-full">
+                  <EventFaq eventFaq={eventData.faqs} />
+                </div>
+                <div className="w-full fixed bottom-0 left-0  z-50 lg:hidden md:block">
+                  <PriceCard regularPrice={eventData.tickets[1]} earlyBirdPrice={eventData.tickets[0]} />
+                </div>
+              </div>
+            </div>
+            <div className="w-[35%] lg:block hidden">
+              <div className="sticky top-4">
+                <PriceCardMd
+                  regularPrice={eventData.tickets[1]}
+                  earlyBirdPrice={eventData.tickets[0]}
+                  tag={eventData.categories}
+                  date={eventData.start_time}
+                  venue={eventData.location_name}
+                  title={eventData.title}
+                  classType="workshop"
+                />
+              </div>
+            </div>
           </div>
-          <div className='w-[35%]'>
-          <PriceCardMd price={eventData.price} tag={eventData.tags} date={eventData.date} venue={eventData.venue} title={eventData.title} />
+        </div>
+        <div className="flex flex-col gap-y-10 lg:hidden w-full">
+          <div className="w-full">
+            <EventInfo eventInfo={eventData.description}  />
+          </div>
+          <div className="w-full">
+            <EventLocation eventVenue={eventData.location_name} eventSubAddress={eventData.location_description} url={eventData.location_url} />
+          </div>
+          <div className="w-full">
+            <EventSchedule date={eventData.start_time} formatDate={formatDate} />
+          </div>
+          <div className="w-full">
+            <StudioGuidelines studioGuidelines={eventData.studio_guidelines} />
+          </div>
+          <div className="w-full">
+            <EventFaq eventFaq={eventData.faqs} />
+          </div>
+          <div className="w-full fixed bottom-0 left-0  z-50 lg:hidden md:block">
+            <PriceCard regularPrice={eventData.tickets[1]} earlyBirdPrice={eventData.tickets[0]} />
           </div>
         </div>
       </div>
-      <div className='flex flex-col gap-y-10 lg:w-[60%] w-full'>
-        <div className='w-full'>
-          <EventInfo eventInfo={eventData.description} />
-        </div>
-        <div className='w-full'>
-          <EventLocation eventVenue={eventData.venue} />
-        </div>
-        <div className='w-full'>
-          <StudioGuidelines studioGuidelines={eventData.guidelines} />
-        </div>
-        <div className='w-full'>
-          <EventFaq eventFaq={eventData.faqs} />
-        </div>
-        <div className='w-full fixed bottom-0 left-0  z-50 lg:hidden md:block'>
-        <PriceCard
-                price={eventData.price}
-            />
-        </div>
-      </div>
-    </div>
-    </> 
-  )
-}
+      <Footer />
+    </>
+  );
+};
 
-export default EventPanelMd
+export default EventPanelMd;
