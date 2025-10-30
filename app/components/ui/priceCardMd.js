@@ -92,11 +92,11 @@ const PriceCardMd = ({
                           {plan.name}
                         </h3>
                       </div>
-                      <div className="flex items-baseline">
-                        <span className="text-xl sm:text-2xl font-semibold text-gray-900">
+                      <div className="flex items-baseline gap-x-1 whitespace-nowrap">
+                        <span className="text-xl sm:text-2xl font-semibold text-gray-900 whitespace-nowrap shrink-0 leading-none">
                           ₹5999
                         </span>
-                        <span className="text-gray-500 text-sm ml-1">
+                        <span className="text-gray-500 text-sm ml-1 whitespace-nowrap shrink-0 leading-none">
                         {plan.name === "Monthly" ? "/month" : "/quarter"}
                       </span>
                       </div>

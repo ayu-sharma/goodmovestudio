@@ -126,7 +126,7 @@ const HeroShowcaseMd = ({ className = "" }) => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTickerIndex((prev) => (prev === 0 ? 1 : 0));
-    }, 2500);
+    }, 1000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -267,13 +267,13 @@ const HeroShowcaseMd = ({ className = "" }) => {
 
               {/* Event Title */}
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-[-0.019em] sm:tracking-[-0.019em] md:tracking-[-0.021em] lg:tracking-[-0.021em] leading-tight my-2 md:my-3 transition-all duration-300 ease-in-out">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal tracking-[-0.019em] sm:tracking-[-0.019em] md:tracking-[-0.021em] lg:tracking-[-0.021em] leading-tight my-2 md:my-3 transition-all duration-300 ease-in-out">
                 {currentEvent?.title}
               </h2>
 
               {/* Event Price */}
 
-              <div className="text-white font-medium text-lg tracking-[-0.014em] md:tracking-[-0.017em] md:text-xl mt-1 transition-all duration-300 ease-in-out">
+              <div className="text-white font-normal text-lg tracking-[-0.014em] md:tracking-[-0.017em] md:text-xl mt-1 transition-all duration-300 ease-in-out">
                 {currentEvent?.type === "Workshop" &&
                 Array.isArray(currentEvent?.tickets) &&
                 currentEvent.tickets.length > 0 ? (
