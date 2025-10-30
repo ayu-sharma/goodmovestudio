@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BackgroundImage = ({ imageUrl = '/images/bhangra.png' }) => {
+const BackgroundImage = ({ imageUrl = '' }) => {
   return (
     <div className="h-screen w-full fixed top-0 left-0 z-10">
       <div 

@@ -9,13 +9,13 @@ const PriceCard = ({ regularPrice, earlyBirdPrice, className }) => {
         <div className="flex items-center gap-x-3">
           {earlyBirdPrice && earlyBirdPrice.enabled === true ? (
           <>
-            <span className="text-2xl font-bold tracking-tight text-gray-500 line-through">{regularPrice?.price}</span>
+            <span className="text-2xl font-bold tracking-tight text-gray-500 line-through">₹ {regularPrice?.price}</span>
             <div className="relative">
-              <span className="text-2xl font-bold tracking-tight text-[#00EA9C]">{earlyBirdPrice.price}</span>
+              <span className="text-2xl font-bold tracking-tight text-[#00EA9C]">₹ {earlyBirdPrice.price}</span>
             </div>
           </>
         ) : (
-          <span className="text-2xl font-bold tracking-tight">{regularPrice?.price}</span>
+          <span className="text-2xl font-bold tracking-tight">₹ {regularPrice?.price}</span>
         )}
         <span className="text-base text-gray-300 font-medium ml-1"></span>
       </div>

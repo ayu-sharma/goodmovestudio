@@ -7,7 +7,7 @@ const EventLocation = ({ eventVenue, eventAddress, eventSubAddress }) => {
     // Prevents the event from bubbling up to parent elements
     // A simple implementation to open Google Maps with the venue location
     const query = encodeURIComponent(`${eventVenue}, ${eventAddress}`);
-    window.open(`${url}`, "_blank");
+    window.open(`${eventAddress}`, "_blank");
     console.log("Get directions clicked");
   };
   return (

@@ -4,21 +4,19 @@ import Image from 'next/image'
 
 // Footer data arrays
 const footerLinks = [
-  { name: "Terms & Conditions", href: "#" },
-  { name: "Privacy Policy", href: "#" },
-  { name: "Contact Us", href: "#" },
+  { name: "Terms & Conditions", href: "/terms" },
+  { name: "Privacy Policy", href: "/privacy" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 const socialLinks = [
-  { name: "Facebook", href: "#", icon: Facebook },
   { name: "Instagram", href: "#", icon: Instagram },
-  { name: "Twitter", href: "#", icon: Twitter },
   { name: "YouTube", href: "#", icon: Youtube }
 ];
 
 const Footer = () => {
   return (
-    <footer className="text-white py-8 mt-auto">
+    <footer className="text-white py-8 mt-auto pb-24">
       <div className="w-full mx-auto px-4">
         {/* Main Footer Content */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">

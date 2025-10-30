@@ -196,7 +196,7 @@ console.log("eventData", eventData)
           formatTime={formatTime}
         />
         <div className="fixed bottom-0 left-0 w-full z-50">
-          <PriceCard price={eventData?.subscriptions?.[0]?.price || 0} />
+          <PriceCard price={eventData?.subscriptions?.[0]?.price || 0} eventData={eventData} />
         </div>
       </div>
       <div className="hidden md:block">

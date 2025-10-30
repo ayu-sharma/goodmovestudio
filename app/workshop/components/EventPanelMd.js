@@ -33,7 +33,7 @@ console.log("eventData:", eventData);
                 </div>
                 <div className="flex flex-col gap-y-6">
                   <div className="w-full">
-                    <EventLocation eventVenue={eventData.location_name} eventSubAddress={eventData.location_description} url={eventData.location_url} />
+                    <EventLocation eventVenue={eventData.location_name} eventSubAddress={eventData.location_description} eventAddress={eventData.location_url} />
                   </div>
                   <div className="w-full">
                     <EventSchedule date={eventData.start_time} formatDate={formatDate} />
@@ -46,7 +46,7 @@ console.log("eventData:", eventData);
                   <EventFaq eventFaq={eventData.faqs} />
                 </div>
                 <div className="w-full fixed bottom-0 left-0  z-50 lg:hidden md:block">
-                  <PriceCard regularPrice={eventData.tickets[1]} earlyBirdPrice={eventData.tickets[0]} />
+                  <PriceCard price={eventData?.tickets?.[0]?.price || eventData?.tickets?.[1]?.price || 0} eventData={eventData} />
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@ console.log("eventData:", eventData);
             <EventInfo eventInfo={eventData.description}  />
           </div>
           <div className="w-full">
-            <EventLocation eventVenue={eventData.location_name} eventSubAddress={eventData.location_description} url={eventData.location_url} />
+            <EventLocation eventVenue={eventData.location_name} eventSubAddress={eventData.location_description} eventAddress={eventData.location_url} />
           </div>
           <div className="w-full">
             <EventSchedule date={eventData.start_time} formatDate={formatDate} />
@@ -82,7 +82,7 @@ console.log("eventData:", eventData);
             <EventFaq eventFaq={eventData.faqs} />
           </div>
           <div className="w-full fixed bottom-0 left-0  z-50 lg:hidden md:block">
-            <PriceCard regularPrice={eventData.tickets[1]} earlyBirdPrice={eventData.tickets[0]} />
+            <PriceCard price={eventData?.tickets?.[0]?.price || eventData?.tickets?.[1]?.price || 0} eventData={eventData} />
           </div>
         </div>
       </div>

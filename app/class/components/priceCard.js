@@ -13,6 +13,7 @@ const PriceCard = ({ price, className, eventData }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  console.log(price);
 
   return (
     <>
@@ -21,8 +22,8 @@ const PriceCard = ({ price, className, eventData }) => {
       >
         <div className="max-w-4xl mx-auto px-4 pt-4 pb-10 sm:pb-4 flex justify-between items-center">
           {/* Left Side: Price information */}
-          <div className="flex items-center gap-x-1">
-            <span className="text-2xl font-bold tracking-tight">{price}</span>
+          <div className="flex items-end gap-x-1">
+            <span className="text-2xl font-bold tracking-tight">₹ {price}</span>
             <span className="text-base text-gray-300 font-medium ml-1">
               onwards
             </span>
@@ -43,76 +44,33 @@ const PriceCard = ({ price, className, eventData }) => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 p-4 md:flex lg:hidden">
-          {/* For screens less than md: bottom-to-top animation */}
-          <div className="md:hidden fixed inset-x-0 bottom-0 rounded-t-3xl max-h-[90vh] overflow-visible transform transition-transform duration-300 ease-out">
-            <div className="relative">
-              {/* Close button - positioned above the modal */}
-              <Button
-                onClick={closeModal}
-                className="absolute -top-16 left-1/2 transform -translate-x-1/2 z-20 bg-white/80 rounded-full px-2 py-4 transition-colors"
-              >
-                <X className="w-6 h-6" />
-              </Button>
-
-              {/* PriceCardMd component */}
-              <div className="">
-                <PriceCardMd
-                  price={eventData?.price || price}
-                  tag={eventData?.tags || []}
-                  date={eventData?.date || ""}
-                  venue={eventData?.venue || ""}
-                  title={eventData?.title || ""}
-                  className="max-w-full rounded-t-3xl rounded-b-none"
-                  classType="class"
-                  plans={[
-                    { id: "monthly", name: "Monthly", price: "₹299", period: "/month" },
-                    {
-                      id: "quarterly",
-                      name: "Quarterly",
-                      price: "₹799",
-                      period: "/quarter",
-                      discount: "-₹1000",
-                    }
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* For screens md and above: centered modal */}
-          <div className="hidden md:flex items-center justify-center w-full">
-            <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-              <div className="relative">
-                {/* Close button */}
-                <Button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 z-10 bg-gray-200 hover:bg-gray-300 rounded-full px-2 py-4 transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </Button>
-
-                {/* PriceCardMd component */}
-                <PriceCardMd
-                  price={eventData?.price || price}
-                  tag={eventData?.tags || []}
-                  date={eventData?.date || ""}
-                  venue={eventData?.venue || ""}
-                  title={eventData?.title || ""}
-                  classType="class"
-                  plans={[
-                    { id: "monthly", name: "Monthly Basic", price: "₹299", period: "/month" },
-                    {
-                      id: "quarterly",
-                      name: "Quarterly Premium",
-                      price: "₹799",
-                      period: "/quarter",
-                      discount: "-₹1000",
-                    }
-                  ]}
-                />
-              </div>
-            </div>
+        <div className="fixed inset-0 bg-black/30 bg-opacity-50 z-50 md:p-4 flex items-end md:items-center md:justify-center">
+          <div className="relative w-full md:max-w-md md:w-full md:rounded-2xl rounded-t-3xl max-h-[90vh] overflow-visible md:overflow-y-auto">
+            {/* Close button for mobile (above sheet) */}
+            <Button
+              onClick={closeModal}
+              className="absolute -top-16 left-1/2 transform -translate-x-1/2 z-20 bg-white/80 rounded-full px-2 py-4 transition-colors md:hidden"
+            >
+              <X className="w-6 h-6" />
+            </Button>
+            {/* Close button for md+ (inside card) */}
+            <Button
+              onClick={closeModal}
+              className="hidden md:block absolute top-4 right-4 z-10 bg-gray-200 hover:bg-gray-300 rounded-full px-2 py-4 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </Button>
+            {/* PriceCardMd component */}
+            <PriceCardMd
+              price={eventData?.price || price}
+              tag={eventData?.categories || []}
+              date={eventData?.schedule?.batches?.[0]?.time_slots?.[0] || ""}
+              venue={eventData?.location_name || ""}
+              title={eventData?.title || ""}
+              className="max-w-full md:rounded-2xl rounded-t-3xl"
+              classType="class"
+              plans={eventData?.subscriptions}
+            />
           </div>
         </div>
       )}

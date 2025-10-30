@@ -20,7 +20,7 @@ const EventPanelMd = ({ eventData, formatDays, formatTime }) => {
           <div className="flex justify-between w-full">
             <div className="lg:w-[60%] w-full flex flex-col gap-y-10">
               <Image
-                src="/images/bhangra.png"
+                src={eventData.image}
                 className="rounded-2xl shadow-2xl max-w-3xl w-full"
                 alt={eventData.title}
                 width={550}
@@ -78,9 +78,12 @@ const EventPanelMd = ({ eventData, formatDays, formatTime }) => {
           <div className="w-full md:block hidden lg:hidden">
             <EventHeader
               title={eventData.title}
-              tag={eventData.tags}
-              date={eventData.date}
-              time={eventData.time}
+              tag={eventData.categories}
+              day={formatDays(eventData?.schedule?.batches?.[0]?.days)}
+              time={formatTime(
+                eventData?.schedule?.batches?.[0]?.time_slots?.[0]
+              )}
+              frequency={eventData?.schedule?.frequency}
             />
           </div>
           <div className="w-full">
@@ -108,7 +111,7 @@ const EventPanelMd = ({ eventData, formatDays, formatTime }) => {
             <EventFaq eventFaq={eventData.faqs} />
           </div>
           <div className="w-full fixed bottom-0 left-0  z-50 lg:hidden md:block">
-            <PriceCard price={eventData.price} eventData={eventData} />
+            <PriceCard price={eventData?.subscriptions?.[0]?.price} eventData={eventData} />
           </div>
         </div>
       </div>
